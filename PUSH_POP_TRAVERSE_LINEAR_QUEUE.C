@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define QUEUESIZE 100
+#define QUEUESIZE 3
 typedef struct{
     char item[QUEUESIZE];
     int front,rear;
