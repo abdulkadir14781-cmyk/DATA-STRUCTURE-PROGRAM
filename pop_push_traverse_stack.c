@@ -6,51 +6,50 @@ typedef struct
     char item[STACKSIZE];
     int top;
 }stack;
-void push(stack*s,char x
-          )
-{
-
+void push(stack*s)
+{   char x;
+    printf("\nEnter Element into stack: ");
+    scanf(" %c",&x);
     if(s->top ==STACKSIZE - 1)
         printf("\nStack is overflow");
     else
     {
-        s->top=s->top+1;
+        s->top+=1;
         s->item[s->top]=x;
     }
 }
-char pop(stack*s)
-{   char y;
+void pop(stack*s)
+{
+    char y;
     if(s->top == -1)
-    {
-        printf("\nStack is empty");
-    }
+    printf("\nStack is Empty");
     else
     {
-        y=s->item[s->top];
-        s->top=s->top-1;
+       y=s->item[s->top];
+       s->top=s->top-1;
+       printf("\nDeleted Element is %c",y);
     }
-    return y;
 }
-void traverse(stack*s)
+void traverse(stack s)
 {   int i;
-    if(s->top == -1)
+    if(s.top == -1)
         printf("Stack is empty");
     else
-    {
-     printf("\nDisplay the element:");
-     for(i=s->top; i>=0;i--)
+     printf("\nTraverse the element:");
+     for(i=s.top; i>=0;i--)
      {
-        printf("\n %c",s->item[i]);
+        printf("\n %c",s.item[i]);
      }
-    }
+
 }
 
-void main()
+int main()
 {
     stack s;
-    int choice;
     s.top=-1;
-    char x;
+    char ch;
+    int choice;
+
     do
     {
     printf("\n1. For push operation");
@@ -62,19 +61,20 @@ void main()
     switch(choice)
     {
     case 1:
-        printf("\nEnter Element into stack: ");
-        scanf("%c",&x);
-        push(&s,x);
+        push(&s);
         break;
     case 2:
         pop(&s);
         break;
     case 3:
-        traverse(&s);
+        traverse(s);
         break;
     default:
         printf("\nEnter Wrong choice!");
     }
-    }while(choice!=0);
+    fflush(0);
+    printf("\n Do you Wish to continue(Yes/No): ");
+    scanf(" %c",&ch);
+    }while(ch=='Y'|| ch=='y');
+    return 0;
 }
-
